@@ -1,6 +1,7 @@
 package ${dto.packageName};
 
 import tk.mybatis.mapper.entity.Example;
+import lombok.Data;
 import ${packageName}.domain.${domainName}Domain;
 <#if extendsBase["dto"]??>import ${extendsBase["dto"]};</#if>
 <#if importClasses["dto"]??>
@@ -16,8 +17,21 @@ import ${being};
  * @since : ${date}
  * @version : v0.0.1
  */
+@Data
 public class ${domainName}Query <#if extendsBase["dto"]??>extends ${extendsBase["dto"]?substring(extendsBase["dto"]?last_index_of(".") +1)} </#if>{
-	
+
+<#list columns as being>
+	<#if being.comment??>
+	/*${being.comment}*/
+	</#if>
+	<#if primaryKey.columnName == being.name>
+	@Id
+	</#if>
+	private ${being.jdbcType} ${being.propertyName};
+
+</#list>
+
+
 	@Override
 	public QueryCriteria toCriteria() {
 		QueryCriteria queryCriteria = new QueryCriteria(${domainName}Domain.class);

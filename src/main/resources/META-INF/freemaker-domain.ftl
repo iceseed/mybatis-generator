@@ -21,7 +21,6 @@ import ${being};
  * @since : ${date}
  * @version : v0.0.1
  */
-
 @Data
 @NoArgsConstructor
 @Table(name = "${tableName}")
