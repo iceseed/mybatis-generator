@@ -36,7 +36,12 @@ public class ${domainName}Query <#if extendsBase["dto"]??>extends ${extendsBase[
 	public QueryCriteria toCriteria() {
 		QueryCriteria queryCriteria = new QueryCriteria(${domainName}Domain.class);
 		Example.Criteria criteria = queryCriteria.createCriteria();
-		
+	<#list columns as being>
+		if (valid(${being.propertyName})) {
+            criteria.andEqualTo("${being.propertyName}", ${being.propertyName});
+        }
+
+	</#list>
 		//todo 写查询逻辑
 		
 		return queryCriteria;
