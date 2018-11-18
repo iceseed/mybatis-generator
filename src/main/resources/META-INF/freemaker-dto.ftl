@@ -2,6 +2,7 @@ package ${dto.packageName};
 
 import tk.mybatis.mapper.entity.Example;
 import lombok.Data;
+import java.util.Date;
 import ${packageName}.domain.${domainName}Domain;
 <#if extendsBase["dto"]??>import ${extendsBase["dto"]};</#if>
 <#if importClasses["dto"]??>
@@ -23,9 +24,6 @@ public class ${domainName}Query <#if extendsBase["dto"]??>extends ${extendsBase[
 <#list columns as being>
 	<#if being.comment??>
 	/*${being.comment}*/
-	</#if>
-	<#if primaryKey.columnName == being.name>
-	@Id
 	</#if>
 	private ${being.jdbcType} ${being.propertyName};
 
